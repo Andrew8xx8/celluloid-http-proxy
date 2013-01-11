@@ -24,4 +24,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('simple_router')
   gem.add_runtime_dependency('activesupport')
   gem.add_runtime_dependency('celluloid-http')
+
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rspec'
 end
