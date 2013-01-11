@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'celluloid-proxy/version'
+require 'celluloid-http-proxy/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "celluloid-proxy"
-  gem.version       = Celluloid::Proxy::VERSION
+  gem.name          = "celluloid-http-proxy"
+  gem.version       = Celluloid::Http::Proxy::VERSION
   gem.authors       = ["Andrew8xx8", "Rozhnov Alexandr"]
   gem.email         = ["avk@8xx8.ru", "nox73@ya.ru"]
   gem.description   = "Celluloid::IO-powered http web proxy"

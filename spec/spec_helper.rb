@@ -1,3 +1,3 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'celluloid-proxy'
+require 'celluloid-http-proxy'
