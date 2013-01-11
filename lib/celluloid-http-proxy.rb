@@ -13,11 +13,15 @@ module Celluloid
   module Http
     module Proxy
       autoload :Transformer, 'celluloid-http-proxy/transformer'
+      autoload :Runner, 'celluloid-http-proxy/runner'
 
       class NotFound < Exception; end
 
-      def self.register_handler(&block)
-        HandlerProvider.register(block)
+      def self.register(&block)
+      end
+
+      def self.run(argv)
+        Runner.run(argv)
       end
     end
   end
