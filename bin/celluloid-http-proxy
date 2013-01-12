@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+# bundle exec ruby bin/celluloid-http-proxy
+require 'celluloid-http-proxy'
+
+Celluloid::Http::Proxy.run(ARGV)
