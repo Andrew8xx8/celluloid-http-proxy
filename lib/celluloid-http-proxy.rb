@@ -17,6 +17,9 @@ module Celluloid
       autoload :HandlersProvider, 'celluloid-http-proxy/handlers_provider'
       autoload :Transformer, 'celluloid-http-proxy/transformer'
 
+      autoload :Request, 'celluloid-http-proxy/request'
+      autoload :Response, 'celluloid-http-proxy/response'
+
       class NotFound < Exception; end
 
       def self.register(&block)

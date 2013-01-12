@@ -1,4 +1,4 @@
-class Celluloid::Http::Proxy::Proxy::Request < Celluloid::Http::Request
+class Celluloid::Http::Proxy::Request < Celluloid::Http::Request
 
   def self.build_from_request(request)
     self.new("http://#{request.headers["Host"]}#{request.url}", {
@@ -17,5 +17,4 @@ class Celluloid::Http::Proxy::Proxy::Request < Celluloid::Http::Request
   def to_env
     Rack::MockRequest.env_for(@uri, method: method, input: body)
   end
-
 end
