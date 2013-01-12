@@ -12,8 +12,10 @@ require 'celluloid-http'
 module Celluloid
   module Http
     module Proxy
+      autoload :Connection, 'celluloid-http-proxy/connection'
+      autoload :Runner,     'celluloid-http-proxy/runner'
+      autoload :HandlersProvider, 'celluloid-http-proxy/handlers_provider'
       autoload :Transformer, 'celluloid-http-proxy/transformer'
-      autoload :Runner, 'celluloid-http-proxy/runner'
 
       class NotFound < Exception; end
 
