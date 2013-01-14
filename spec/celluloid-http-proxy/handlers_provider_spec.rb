@@ -21,21 +21,8 @@ describe Celluloid::Http::Proxy::HandlersProvider do
   end
 
   it 'can register handler on custom condition' do
-    request = Celluloid::Http::Proxy::Request.new( "http://localhost:8080/proxy/movies.json?movie_source_id=1" )
-
-    handlers_provider = Celluloid::Http::Proxy::HandlersProvider.register do
-      condition :custom_condition do |r|
-        r.host == "localhost"
-      end
-
-      on :custom_condition do
-        true
-      end
-
-      on :another_condition do
-        true
-      end
-    end
+    request = Factories.request_to_localhost("movies.json?movie_source_id=1")
+    handlers_provider = Factories.localhost_handlers
 
     handlers = handlers_provider.get_handlers(:custom_condition, request)
     handlers.count.should eq 1 

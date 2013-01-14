@@ -5,4 +5,11 @@ class FakeResponse
     @status = params[:status]
     @body = params[:body]
   end
+
+  def self.default
+    new({
+      status: 200,
+      body: "body"
+    })
+  end
 end

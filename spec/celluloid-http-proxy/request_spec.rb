@@ -3,12 +3,7 @@ require 'resolv'
 
 describe Celluloid::Http::Proxy::Request do
   it 'can be initialized from reel request' do
-    reel_request = FakeRequest.new({
-      headers: { "Host" => "localhost:8080" },
-      url: "/proxy/movies.json?movie_source_id=1",
-      body: "",
-      method: :get
-    })
+    reel_request = FakeRequest.to_localhost
 
     request = Celluloid::Http::Proxy::Request.build_from_request reel_request
 
@@ -23,7 +18,7 @@ describe Celluloid::Http::Proxy::Request do
   end
 
   it 'can be initialized from url' do
-    request = Celluloid::Http::Proxy::Request.new( "http://localhost:8080/proxy/movies.json?movie_source_id=1" )
+    request = Factories.request_to_localhost("proxy/movies.json?movie_source_id=1")
 
     request.scheme.should eq"http"
     request.path.should eq"/proxy/movies.json"
@@ -44,8 +39,7 @@ describe Celluloid::Http::Proxy::Request do
 #  end
 
   it 'can build url' do
-    request = Celluloid::Http::Proxy::Request.new( "http://localhost:8080/movies.json?movie_source_id=1&test=2")
-
+    request = Factories.request_to_localhost("movies.json?movie_source_id=1&test=2")
     request.url.should eq "http://localhost:8080/movies.json?movie_source_id=1&test=2"
   end
 end

@@ -3,10 +3,7 @@ require 'resolv'
 
 describe Celluloid::Http::Proxy::Response do
   it 'can be initialized from reel response' do
-    response = FakeResponse.new({
-      status: 200,
-      body: "body"
-    })
+    response = FakeResponse.default
 
     response = Celluloid::Http::Proxy::Response.build_from_response response
 
