@@ -1,7 +1,7 @@
 class Celluloid::Http::Proxy::Transformer
   autoload :Sandbox, 'celluloid-http-proxy/transformer/sandbox'
 
-  def initialize(request, handlers_provider)
+  def initialize(request, handlers_provider = nil)
     @request = Celluloid::Http::Proxy::Request.build_from_request request
 
     if handlers_provider

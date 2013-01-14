@@ -2,10 +2,16 @@ require 'spec_helper'
 require 'resolv'
 
 describe Celluloid::Http::Proxy::Transformer do
-  it 'can be initialized from request' do
+  it 'can be initialized from request with handlers' do
     reel_request = FakeRequest.to_localhost
     handlers = Factories.localhost_handlers
     transformer = Celluloid::Http::Proxy::Transformer.new reel_request, handlers
+    transformer.should be_kind_of Celluloid::Http::Proxy::Transformer
+  end
+
+  it 'can be initialized from request without handlers' do
+    reel_request = FakeRequest.to_localhost
+    transformer = Celluloid::Http::Proxy::Transformer.new reel_request
     transformer.should be_kind_of Celluloid::Http::Proxy::Transformer
   end
 
