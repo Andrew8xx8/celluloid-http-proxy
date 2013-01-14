@@ -13,8 +13,4 @@ class Celluloid::Http::Proxy::Request < Celluloid::Http::Request
     self.query = params
     param
   end
-
-  def to_env
-    Rack::MockRequest.env_for(@uri, method: method, input: body)
-  end
 end
