@@ -30,13 +30,13 @@ describe Celluloid::Http::Proxy::Request do
     request.body.should eq nil
   end
 
-#  def test_remove_param
-#    request = MovieSourcesProxy::Proxy::Request.new( "http://localhost:8080//movies.json?movie_source_id=1&test=2" )
-#
-#    request.remove_param("movie_source_id")
-#
-#    assert_equal "test=2", request.query
-#  end
+  def test_remove_param
+    request = Factories.request_to_localhost("movies.json?movie_source_id=1&test=2")
+
+    request.remove_param("movie_source_id")
+
+    request.query.should eq "test=2"
+  end
 
   it 'can build url' do
     request = Factories.request_to_localhost("movies.json?movie_source_id=1&test=2")
