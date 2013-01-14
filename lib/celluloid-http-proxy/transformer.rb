@@ -23,7 +23,7 @@ class Celluloid::Http::Proxy::Transformer
 
   def transform_response(response)
     @handlers.each do |handler|
-       response = Sandbox.transform response, handler
+       response = Sandbox.transform_response response, handler
     end
 
     response
@@ -31,7 +31,7 @@ class Celluloid::Http::Proxy::Transformer
 
   def transform_request(request)
     @handlers.each do |handler|
-       request = Sandbox.transform request, handler
+       request = Sandbox.transform_request request, handler
     end
 
     request
