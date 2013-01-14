@@ -19,23 +19,21 @@ class Celluloid::Http::Proxy::Transformer
     transform_request @request
   end
 
+  private
+
   def transform_response(response)
+    @handlers.each do |handler|
+       response = Sandbox.transform response, handler
+    end
+
     response
   end
 
   def transform_request(request)
+    @handlers.each do |handler|
+       request = Sandbox.transform request, handler
+    end
+
     request
-  end
-
-  def request_transformer
-    @request_transformer ||= case @movie_source.handler
-      when 'movies_db' then MovieSourcesProxy::Transformer::MoviesDb::Request.new
-    end
-  end
-
-  def response_transformer
-    @response_transformer ||= case @movie_source.handler
-      when 'movies_db' then MovieSourcesProxy::Transformer::MoviesDb::Response.new
-    end
   end
 end
