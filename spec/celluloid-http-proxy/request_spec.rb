@@ -22,19 +22,19 @@ describe Celluloid::Http::Proxy::Request do
     request.body.should   eq ""
   end
 
-#  def test_initialize_from_url
-#    request = MovieSourcesProxy::Proxy::Request.new( "http://localhost:8080/proxy/movies.json?movie_source_id=1" )
-#
-#    assert_equal "http", request.scheme
-#    assert_equal "localhost", request.host
-#    assert_equal "/proxy/movies.json", request.path
-#    assert_equal "movie_source_id=1", request.query
-#    assert_equal 8080, request.port
-#    assert_equal({ "movie_source_id" => "1"}, request.query_params)
-#    assert_equal :get, request.method
-#    assert_equal nil, request.body
-#  end
-#
+  it 'can be initialized from url' do
+    request = Celluloid::Http::Proxy::Request.new( "http://localhost:8080/proxy/movies.json?movie_source_id=1" )
+
+    request.scheme.should eq"http"
+    request.path.should eq"/proxy/movies.json"
+    request.host.should eq "localhost"
+    request.query.should eq "movie_source_id=1"
+    request.port.should eq 8080
+    request.query_params.should eq({ "movie_source_id" => "1"})
+    request.method.should eq :get
+    request.body.should eq nil
+  end
+
 #  def test_remove_param
 #    request = MovieSourcesProxy::Proxy::Request.new( "http://localhost:8080//movies.json?movie_source_id=1&test=2" )
 #
@@ -42,10 +42,10 @@ describe Celluloid::Http::Proxy::Request do
 #
 #    assert_equal "test=2", request.query
 #  end
-#
-#  def test_build_url
-#    request = MovieSourcesProxy::Proxy::Request.new( "http://localhost:8080//movies.json?movie_source_id=1&test=2")
-#
-#    assert_equal "http://localhost:8080//movies.json?movie_source_id=1&test=2", request.url
-#  end
-end 
+
+  it 'can build url' do
+    request = Celluloid::Http::Proxy::Request.new( "http://localhost:8080/movies.json?movie_source_id=1&test=2")
+
+    request.url.should eq "http://localhost:8080/movies.json?movie_source_id=1&test=2"
+  end
+end
