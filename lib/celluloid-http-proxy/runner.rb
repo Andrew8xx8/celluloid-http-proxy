@@ -75,8 +75,8 @@ class Celluloid::Http::Proxy::Runner
 
   end
 
-  def self.run(args)
-    new.run(args)
+  def self.run(args, handlers_provider)
+    new.run(args, handlers_provider)
   end
 
 end
