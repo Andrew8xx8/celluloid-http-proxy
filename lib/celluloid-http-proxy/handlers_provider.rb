@@ -3,10 +3,6 @@ class Celluloid::Http::Proxy::HandlersProvider
     new block
   end
 
-  def all
-    @handlers
-  end
-
   def initialize(block)
     @handlers = []
     @conditions = {}
