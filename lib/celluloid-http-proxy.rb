@@ -23,10 +23,11 @@ module Celluloid
       class NotFound < Exception; end
 
       def self.register(&block)
+        @handlers_provider = Celluloid::Http::Proxy::HandlersProvider.register &block
       end
 
       def self.run(argv)
-        Runner.run(argv)
+        Runner.run(argv, @handlers_provider)
       end
     end
   end

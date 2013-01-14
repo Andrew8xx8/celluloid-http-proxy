@@ -1,4 +1,7 @@
 class Celluloid::Http::Proxy::Connection
+  def initialize(handlers_provider)
+    @handlers_provider = handlers_provider
+  end
 
   def accept(connection)
     while request = connection.request
@@ -11,7 +14,7 @@ class Celluloid::Http::Proxy::Connection
   end
 
   def proxy_request(request)
-    transformer = Celluloid::Http::Proxy::Transformer.new(request)
+    transformer = Celluloid::Http::Proxy::Transformer.new(request, @handlers_provider)
     proxy_request = transformer.transform_request_for_backend
 
     backend_response = get_response_from_backend(proxy_request)

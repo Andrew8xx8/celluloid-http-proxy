@@ -47,7 +47,7 @@ class Celluloid::Http::Proxy::Runner
     }
   end
 
-  def run(args)
+  def run(args, handlers_provider = nil)
     options = default_options.dup
 
     parser = OptionsParser.new
@@ -57,7 +57,7 @@ class Celluloid::Http::Proxy::Runner
     write_pidfile(options[:pidfile]) if options[:pidfile]
 
     Reel::Server.run(options[:host], options[:port]) do |connection|
-      Celluloid::Http::Proxy::Connection.new.accept(connection)
+      Celluloid::Http::Proxy::Connection.new(handlers_provider).accept(connection)
     end
   end
 
