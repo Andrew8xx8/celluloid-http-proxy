@@ -30,7 +30,7 @@ describe Celluloid::Http::Proxy::Request do
     request.body.should eq nil
   end
 
-  def test_remove_param
+  it 'can remove query param' do
     request = Factories.request_to_localhost("movies.json?movie_source_id=1&test=2")
 
     request.remove_param("movie_source_id")
