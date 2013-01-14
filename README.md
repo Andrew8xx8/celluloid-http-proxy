@@ -1,14 +1,14 @@
 [![Build Status](https://travis-ci.org/Andrew8xx8/celluloid-http-proxy.png?branch=master)](https://travis-ci.org/Andrew8xx8/celluloid-http-proxy) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/Andrew8xx8/celluloid-http-proxy)
 
-# Celluloid::Proxy
+# Celluloid::Http::Proxy
 
-TODO: Write a gem description
+Web proxy based on Celluloid::Reel web server.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'celluloid-proxy'
+    gem 'celluloid-http-proxy'
 
 And then execute:
 
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install celluloid-proxy
+    $ gem install celluloid-http-proxy
 
 ## Usage
 
