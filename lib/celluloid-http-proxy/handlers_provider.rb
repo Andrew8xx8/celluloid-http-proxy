@@ -32,7 +32,19 @@ class Celluloid::Http::Proxy::HandlersProvider
   end
 
   def get_handlers(condition, request)
-    return search_handlers(condition) if apply_condition(condition, request)
+    return [] unless apply_condition(condition, request)
+    search_handlers(condition)
+  end
+
+  def get_handlers_for_request(request)
+    handlers = []
+    @conditions.each_key do |condition|
+      get_handlers(condition, request).each do |handler|
+        handlers << handler[:block]
+      end
+    end
+
+    handlers
   end
 
 private

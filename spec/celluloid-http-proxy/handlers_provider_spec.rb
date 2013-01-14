@@ -30,4 +30,16 @@ describe Celluloid::Http::Proxy::HandlersProvider do
     handlers.first[:block].should be_a_kind_of Proc
     handlers.first[:block].call.should eq true
   end
+
+  it 'can get registated handlers by request' do
+    local_request = Factories.request_to_localhost("movies.json?movie_source_id=1")
+    request = Factories.request_to_external("movies.json?movie_source_id=1")
+
+    handlers_provider = Factories.localhost_handlers
+
+    handlers = handlers_provider.get_handlers_for_request(local_request)
+    handlers.count.should eq 1
+    handlers = handlers_provider.get_handlers_for_request(request)
+    handlers.count.should eq 0
+  end
 end
