@@ -17,6 +17,7 @@ describe Celluloid::Http::Proxy::HandlersProvider do
     end
 
     handlers_provider.get_condition(:custom_condition).should be_a_kind_of Proc
+    handlers_provider.get_condition(:custom_condition).call.should eq true
   end
 
   it 'can register handler on custom condition' do
@@ -40,5 +41,6 @@ describe Celluloid::Http::Proxy::HandlersProvider do
     handlers.count.should eq 1 
     handlers.first[:condition].should eq :custom_condition
     handlers.first[:block].should be_a_kind_of Proc
+    handlers.first[:block].call.should eq true
   end
 end
