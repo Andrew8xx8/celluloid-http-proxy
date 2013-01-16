@@ -14,20 +14,21 @@ module Celluloid
     module Proxy
       autoload :Connection, 'celluloid-http-proxy/connection'
       autoload :Runner,     'celluloid-http-proxy/runner'
-      autoload :HandlersProvider, 'celluloid-http-proxy/handlers_provider'
+      autoload :TransformersProvider, 'celluloid-http-proxy/transformers_provider'
       autoload :Transformer, 'celluloid-http-proxy/transformer'
 
       autoload :Request, 'celluloid-http-proxy/request'
       autoload :Response, 'celluloid-http-proxy/response'
 
+      autoload :ConditionSandbox, 'celluloid-http-proxy/condition_sandbox'
       class NotFound < Exception; end
 
       def self.register(&block)
-        @handlers_provider = Celluloid::Http::Proxy::HandlersProvider.register &block
+        @transformers_provider = Celluloid::Http::Proxy::TransformersProvider.register &block
       end
 
       def self.run(argv)
-        Runner.run(argv, @handlers_provider)
+        Runner.run(argv, @transformers_provider)
       end
     end
   end

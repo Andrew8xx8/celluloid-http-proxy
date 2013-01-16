@@ -1,4 +1,5 @@
-class Celluloid::Http::Proxy::HandlersProvider
+class Celluloid::Http::Proxy::TransformersProvider
+
   def self.register(&block)
     new block
   end
@@ -10,21 +11,12 @@ class Celluloid::Http::Proxy::HandlersProvider
     instance_eval &block
   end
 
-  def condition(name, &block)
-    @conditions[name] = block
-  end
-
-  def on(condition, &block)
+  def transform_by(transformer, *condition, &block)
     @handlers << {
       condition: condition,
+      transformer: transformer,
       block: block
     }
-  end
-
-  def get_condition(name)
-    raise CustomConditionNotFound unless condition_exists? name
-
-    @conditions[name]
   end
 
   def get_handlers(condition, request)
@@ -32,11 +24,13 @@ class Celluloid::Http::Proxy::HandlersProvider
     search_handlers(condition)
   end
 
-  def get_handlers_for_request(request)
+  def for_request(request)
+    sandbox = Celluloid::Http::Proxy::ConditionSandbox.new request
+
     handlers = []
-    @conditions.each_key do |condition|
-      get_handlers(condition, request).each do |handler|
-        handlers << handler[:block]
+    @handlers.each do |handler|
+      if sandbox.apply(handler)
+        handlers << handler[:transformer].new(request)
       end
     end
 
@@ -48,8 +42,8 @@ private
     @handlers.select {|s| s[:condition] == condition }
   end
 
-  def apply_condition(name, request)
-    get_condition(name).call request
+  def apply_condition(handler, request)
+
   end
 
   def condition_exists?(name)
