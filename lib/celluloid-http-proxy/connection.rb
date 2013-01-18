@@ -10,7 +10,7 @@ class Celluloid::Http::Proxy::Connection
       connection.respond response.sym_status, response.body
     end
 
-    connection.close
+    connection.close unless connection.socket.closed?
   end
 
   def proxy_request(request)
