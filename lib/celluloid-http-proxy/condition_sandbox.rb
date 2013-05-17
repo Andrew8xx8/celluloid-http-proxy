@@ -43,5 +43,4 @@ class Celluloid::Http::Proxy::ConditionSandbox
 
     params
   end
-
 end

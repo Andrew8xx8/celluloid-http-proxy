@@ -15,21 +15,20 @@ class Celluloid::Http::Proxy::Connection
 
   def proxy_request(request)
     request = Celluloid::Http::Proxy::Request.build_from_request request
-    proxy_request = transform_request request, request
+    transformers = @transformers_provider.for_request request
+    proxy_request = transform_request transformers, request
 
     backend_response = get_response_from_backend(proxy_request)
 
     backend_response = Celluloid::Http::Proxy::Response.build_from_response backend_response
-    transform_response request, backend_response
+    transform_response transformers, backend_response
   end
 
   def get_response_from_backend(proxy_request)
     Celluloid::Http.send_request proxy_request
   end
 
-  def transform_request(original_request, request)
-    request = request.dup
-    transformers = @transformers_provider.for_request original_request
+  def transform_request(transformers, request)
     transformers.each do |transformer|
       request = transformer.transform_request request
     end
@@ -37,8 +36,7 @@ class Celluloid::Http::Proxy::Connection
     request
   end
 
-  def transform_response(original_request, response)
-    transformers = @transformers_provider.for_request original_request
+  def transform_response(transformers, response)
     transformers.each do |transformer|
       response = transformer.transform_response response
     end
