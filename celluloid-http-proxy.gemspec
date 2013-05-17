@@ -18,12 +18,13 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_runtime_dependency('simple_pid')
-  gem.add_runtime_dependency('reel')
+  gem.add_runtime_dependency('reel', '0.2.0')
   gem.add_runtime_dependency('virtus')
   gem.add_runtime_dependency('multi_json')
   gem.add_runtime_dependency('simple_router')
   gem.add_runtime_dependency('activesupport')
   gem.add_runtime_dependency('celluloid-http', '~> 0.0.6')
+  gem.add_runtime_dependency('celluloid-io', '0.12.0')
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
