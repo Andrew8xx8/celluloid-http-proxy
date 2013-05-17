@@ -8,6 +8,7 @@ require 'active_support'
 require 'active_support/core_ext/object/to_query'
 require 'simple_router'
 require 'celluloid-http'
+require 'optparse'
 
 module Celluloid
   module Http
