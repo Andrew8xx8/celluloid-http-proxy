@@ -3,7 +3,7 @@ class Celluloid::Http::Proxy::Request < Celluloid::Http::Request
   def self.build_from_request(request)
     self.new("http://#{request.headers["Host"]}#{request.url}", {
       method: request.method,
-      body: request.body
+      raw_body: request.body
     })
   end
 
