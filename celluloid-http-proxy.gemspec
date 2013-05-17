@@ -23,7 +23,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('multi_json')
   gem.add_runtime_dependency('simple_router')
   gem.add_runtime_dependency('activesupport')
-  gem.add_runtime_dependency('celluloid-http')
+  gem.add_runtime_dependency('celluloid-http', '~> 0.0.6')
+  gem.add_runtime_dependency('json', '~> 1.7.7')
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
