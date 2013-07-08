@@ -1,9 +1,9 @@
 class FakeRequest
-  attr_accessor :headers, :url, :method, :body
+  attr_accessor :headers, :path, :method, :body
 
   def initialize(params)
     @headers = params[:headers]
-    @url = params[:url]
+    @path = params[:path]
     @method = params[:method]
     @body = params[:body]
   end
@@ -11,7 +11,7 @@ class FakeRequest
   def self.to_localhost
     new({
       headers: { "Host" => "localhost:8080" },
-      url: "/proxy/movies.json?movie_source_id=1",
+      path: "/proxy/movies.json?movie_source_id=1",
       body: "",
       method: :get
     })
